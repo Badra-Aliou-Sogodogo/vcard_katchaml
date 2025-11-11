@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KATCHAM COMPANY — Carte & QR</title>
+    <meta name="description" content="KATCHAM COMPANY est spécialisée dans le transport et les Bâtiments & Travaux Publics (BTP), offrant des solutions fiables et innovantes pour la mobilité et la construction. Notre expertise nous permet de réaliser vos projets avec professionnalisme, sécurité et efficacité. Construisons l'avenir ensemble !">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KATCHAM COMPANY — Transport - Bâtiments & Travaux Publics">
+    <meta property="og:description" content="KATCHAM COMPANY est spécialisée dans le transport et les Bâtiments & Travaux Publics (BTP), offrant des solutions fiables et innovantes pour la mobilité et la construction. Notre expertise nous permet de réaliser vos projets avec professionnalisme, sécurité et efficacité. Construisons l'avenir ensemble !">
+    <meta property="og:url" content="">
+    <meta name="theme-color" content="#00285A">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root { 
+        --c-primary: #00285A;
+        --c-accent: #00285A;
+        --c-text: #1f2937;
+        --c-muted: #475569;
+        --c-border: #e2e8f0;
+        --c-bg: #f8fafc;
+        --radius: 16px;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        font-family: 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+        color: var(--c-text);
+        background: linear-gradient(180deg, #ffffff 0%, var(--c-bg) 100%);
+      }
+      /* Média fluides et prévention des débordements */
+      img, video { max-width: 100%; height: auto; }
+      .brand, .info-panel, .qr-panel { min-width: 0; }
+      .list a { overflow-wrap: anywhere; word-break: break-word; }
+      img, video { max-width: 100%; height: auto; }
+      h1, h2, h3 { font-family: 'Poppins', 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }
+      .wrap {
+        max-width: 1100px;
+        margin: 48px auto;
+        padding: 0 20px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+      }
+      .brand h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.2;
+      }
+      .brand p {
+        margin: 4px 0 0;
+        color: var(--c-muted);
+      }
+      .lang-switch { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+      .lang-switch label { color: var(--c-muted); font-size: 14px; }
+      .lang-select { border: 1px solid var(--c-border); border-radius: 10px; padding: 8px 10px; background: #fff; font-weight: 600; cursor: pointer; }
+      .card {
+        display: grid;
+        grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+        gap: 28px;
+        background: #fff;
+        border: 1px solid var(--c-border);
+        border-radius: var(--radius);
+        padding: 28px;
+        box-shadow: 0 10px 30px rgba(2, 8, 23, 0.06);
+      }
+      .qr-panel, .info-panel {
+        background:rgb(255, 255, 255);
+      }
+      .qr-box {
+        border: 1px dashed var(--c-border);
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fafafa;
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+      }
+      #qrcode img, #qrcode canvas {
+        width: 100%;
+        height: auto;
+        image-rendering: pixelated;
+      }
+      #qrcode { position: relative; display: inline-block; }
+      #qrcode .qr-logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 36%;
+        height: auto;
+        max-height: 28%;
+        border-radius: 12px;
+        background: #ffffff;
+        padding: 6px;
+        box-shadow: 0 0 0 2px #ffffff;
+        object-fit: contain;
+        pointer-events: none;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .btn {
+        appearance: none;
+        border: 1px solid var(--c-border);
+        background: #fff;
+        color: var(--c-text);
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-family: 'Poppins', 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .actions .btn { flex: 1 1 160px; }
+      .btn.primary {
+        border-color: transparent;
+        background: linear-gradient(180deg, var(--c-accent), var(--c-primary));
+        color: #fff;
+      }
+      .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(2, 8, 23, 0.08); }
+      .btn:active { transform: translateY(0); box-shadow: none; }
+      .info-panel h2 {
+        margin: 0 0 8px 0;
+        font-size: 22px;
+      }
+      .muted { color: var(--c-muted); }
+      .list {
+        margin: 14px 0 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .list li {
+        margin: 8px 0;
+      }
+      footer {
+        margin-top: 18px;
+        color: var(--c-muted);
+        font-size: 13px;
+      }
+      @media (max-width: 860px) {
+        .card { grid-template-columns: 1fr; }
+        .logo { width: 100px; height: 150px; }
+      }
+      @media (max-width: 1024px) {
+        .wrap { margin: 32px auto; padding: 0 16px; }
+        .card { gap: 20px; padding: 22px; }
+        .brand h1 { font-size: clamp(22px, 3.2vw, 26px); }
+        .brand p { font-size: 14px; }
+      }
+      @media (max-width: 640px) {
+        header { justify-content: center; text-align: center; gap: 12px; }
+        .brand h1 { font-size: clamp(20px, 5.5vw, 24px); }
+        .brand p { font-size: 13px; }
+        .lang-switch { width: 100%; justify-content: center; margin-top: 8px; }
+        .actions { gap: 8px; }
+        .actions .btn { flex: 1 1 100%; justify-content: center; }
+        .list .btn { display: block; width: 100%; text-align: center; }
+        /* Forcer le logo d’en-tête à se réduire sur mobile malgré le style inline */
+        header img.logo { height: 150px !important; width: auto !important; max-width: 90vw; }
+      }
+      @media (max-width: 400px) {
+        .card { padding: 18px; }
+        .btn { padding: 9px 12px; }
+      }
+      @media print {
+        body { background: #fff; }
+        .wrap { margin: 0; padding: 0; }
+        header, .actions, footer { display: none !important; }
+        .card { box-shadow: none; border: none; padding: 0; }
+        .qr-box { border: none; padding: 0; }
+        #qrcode img, #qrcode canvas { width: 80mm; height: 80mm; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <img id="headerLogo" class="logo" style="width: 120px; height: 110px; background-color: #ffffff;" alt="">
+        <div id="logoFallback" class="logo" style="display:none"></div>
+        <div class="brand">
+          <h1 id="brandName"></h1>
+          <p id="brandTagline"></p>
+        </div>
+        <div class="lang-switch">
+          <label for="select_lang" id="translateLabel">Traduire:</label>
+          <select id="select_lang" class="lang-select" aria-label="Traduire">
+            <option value="fr">FR</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+      </header>
+
+      <div class="card">
+        <section class="qr-panel">
+          <div class="qr-box">
+            <div id="qrcode"></div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" id="btnPrint">Imprimer</button>
+            <button class="btn" id="btnDownloadQr">Télécharger le QR (PNG)</button>
+            <button class="btn" id="btnCopyLink">Copier le lien</button>
+          </div>
+        </section>
+
+        <section class="info-panel">
+          <h2 id="aboutTitle">À propos</h2>
+          <p id="aboutDesc" class="muted"></p>
+          <ul id="infoList" class="list"></ul>
+          <footer id="scanFooter">Scannez le QR sur nos cartes pour revenir sur cette page et nous contacter rapidement.</footer>
+        </section>
+      </div>
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+    <script>
+      (function() {
+        // Données de l'entreprise (issues du fichier PHP original)
+        var enterprise = {
+          name: "KATCHAM COMPANY",
+          tagline: "Transport - Bâtiments & Travaux Publics",
+          description: "KATCHAM COMPANY est spécialisée dans le transport et les Bâtiments & Travaux Publics (BTP), offrant des solutions fiables et innovantes pour la mobilité et la construction. Notre expertise nous permet de réaliser vos projets avec professionnalisme, sécurité et efficacité. Construisons l'avenir ensemble !",
+          name_en: "KATCHAM COMPANY",
+          tagline_en: "Transport - Construction & Public Works",
+          description_en: "KATCHAM COMPANY is specialized in transport and construction and public works (BTP), offering reliable and innovative solutions for mobility and construction. Our expertise allows us to realize your projects with professionalism, safety and efficiency. Let's build the future together!",
+          address: "BP 1352 Yamoussoukro, Quartier Sopim",
+          address_en: "BP 1352 Yamoussoukro, Quartier Château, route de Oumé",
+          city: "Yamoussoukro",
+          city_en: "Yamoussoukro",
+          postal_code: "",
+          country: "Côte d'Ivoire",
+          country_en: "Côte d\u2019Ivoire (Ivory Coast)",
+          phone: "+225 01 00 10 10 71",
+          phone2: "+225 07 07 07 50 19",
+          email: "katchamcompany@gmail.com",
+          ncc: "2218960",
+          boa: "04037 900017290110-85",
+          rccm: "CI-TDI-2021-B-1163",
+          website: "",
+          logo_url: "../img/katcham_company_logo.png",
+          qr_logo_url: "",
+          primary_color: "#00285A",
+          accent_color: "#00285A",
+          text_color: "#1f2937"
+        };
+
+        var translations = {
+          fr: {
+            translate: "Traduire",
+            print: "Imprimer",
+            download_png: "Télécharger le QR (PNG)",
+            copy_link: "Copier le lien",
+            link_copied: "Lien copié ✔",
+            about: "À propos",
+            website: "Site :",
+            email: "Email :",
+            phone: "Téléphone :",
+            phone2: "Contact :",
+            ncc: "N° CC :",
+            boa: "Compte SIB N° :",
+            rccm: "RCCM N° :",
+            address: "Adresse :",
+            scan_footer: "Scannez le QR sur nos cartes pour revenir sur cette page et nous contacter rapidement."
+          },
+          en: {
+            translate: "Translate",
+            print: "Print",
+            download_png: "Download QR (PNG)",
+            copy_link: "Copy link",
+            link_copied: "Link copied ✔",
+            about: "About",
+            website: "Website:",
+            email: "Email:",
+            phone: "Phone:",
+            phone2: "Contact:",
+            ncc: "Tax ID:",
+            boa: "SIB Account N° :",
+            rccm: "RCCM N° :",
+            address: "Address:",
+            scan_footer: "Scan the QR on our cards to return to this page and contact us quickly."
+          }
+        };
+
+        // Utilitaires
+        function getLang() {
+          var params = new URLSearchParams(window.location.search);
+          var l = params.get("lang");
+          return l === "en" ? "en" : "fr";
+        }
+        function setLang(l) {
+          var params = new URLSearchParams(window.location.search);
+          params.set("lang", l);
+          window.location.search = params.toString();
+        }
+        function slugify(text) {
+          return (text || "")
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^\\p{L}\\d]+/gu, "-")
+            .replace(/^-+|-+$/g, "")
+            .toLowerCase()
+            .replace(/[^-a-z0-9]+/g, "") || "katcham-company";
+        }
+        function sanitizePhone(p) {
+          return (p || "").replace(/\s+/g, "");
+        }
+        function initials(str) {
+          var s = (str || "").trim();
+          if (!s) return "KC";
+          return s.slice(0, 2).toUpperCase();
+        }
+        function computeQrUrl(lang) {
+          var baseUrl = window.location.origin + window.location.pathname;
+          var qp = new URLSearchParams({ src: "carte", lang: lang });
+          return baseUrl + "?" + qp.toString();
+        }
+
+        // Rendu UI
+        var lang = getLang();
+        var tr = translations[lang];
+
+        document.documentElement.lang = lang;
+        document.querySelector('meta[property="og:url"]').setAttribute("content", window.location.href.split("#")[0]);
+
+        var nameDisplay = lang === "en" && enterprise.name_en ? enterprise.name_en : enterprise.name;
+        var taglineDisplay = lang === "en" && enterprise.tagline_en ? enterprise.tagline_en : enterprise.tagline;
+        var descriptionDisplay = lang === "en" && enterprise.description_en ? enterprise.description_en : enterprise.description;
+        var addressDisplay = lang === "en" && enterprise.address_en ? enterprise.address_en : enterprise.address;
+        var cityDisplay = lang === "en" && enterprise.city_en ? enterprise.city_en : enterprise.city;
+        var countryDisplay = lang === "en" && enterprise.country_en ? enterprise.country_en : enterprise.country;
+
+        // Titre / metas
+        var titleSuffix = lang === "en" ? "Card & QR" : "Carte & QR";
+        document.title = nameDisplay + " — " + titleSuffix;
+        document.querySelector('meta[name="description"]').setAttribute("content", descriptionDisplay);
+        document.querySelector('meta[property="og:title"]').setAttribute("content", nameDisplay + " — " + taglineDisplay);
+        document.querySelector('meta[property="og:description"]').setAttribute("content", descriptionDisplay);
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", enterprise.primary_color);
+
+        // Couleurs (si besoin d'actualiser dynamiquement)
+        document.documentElement.style.setProperty("--c-primary", enterprise.primary_color);
+        document.documentElement.style.setProperty("--c-accent", enterprise.accent_color);
+        document.documentElement.style.setProperty("--c-text", enterprise.text_color);
+
+        // En-tête
+        var headerLogo = document.getElementById("headerLogo");
+        var logoFallback = document.getElementById("logoFallback");
+        headerLogo.alt = "Logo " + nameDisplay;
+        headerLogo.src = enterprise.logo_url || "";
+        logoFallback.textContent = initials(nameDisplay);
+        headerLogo.onerror = function() {
+          headerLogo.style.display = "none";
+          logoFallback.style.display = "inline-flex";
+        };
+
+        document.getElementById("brandName").textContent = nameDisplay;
+        document.getElementById("brandTagline").textContent = taglineDisplay;
+
+        // Lang switch
+        var selectLang = document.getElementById("select_lang");
+        selectLang.value = lang;
+        document.getElementById("translateLabel").textContent = tr.translate + ":";
+        selectLang.setAttribute("aria-label", tr.translate);
+        selectLang.addEventListener("change", function() { setLang(this.value); });
+
+        // Boutons
+        var btnPrint = document.getElementById("btnPrint");
+        var btnDownload = document.getElementById("btnDownloadQr");
+        var btnCopy = document.getElementById("btnCopyLink");
+        btnPrint.textContent = tr.print;
+        btnDownload.textContent = tr.download_png;
+        btnCopy.textContent = tr.copy_link;
+        btnPrint.addEventListener("click", function() { window.print(); });
+
+        // Panneau info
+        document.getElementById("aboutTitle").textContent = tr.about;
+        document.getElementById("aboutDesc").textContent = descriptionDisplay;
+        document.getElementById("scanFooter").textContent = tr.scan_footer;
+
+        var infoList = document.getElementById("infoList");
+        function addItem(label, contentNode) {
+          var li = document.createElement("li");
+          var strong = document.createElement("strong");
+          strong.textContent = label;
+          li.appendChild(strong);
+          li.appendChild(document.createTextNode(" "));
+          li.appendChild(contentNode);
+          infoList.appendChild(li);
+        }
+
+        if (enterprise.website) {
+          var a = document.createElement("a");
+          a.href = enterprise.website;
+          a.className = "btn btn-primary";
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.textContent = enterprise.website;
+          addItem(tr.website, a);
+        }
+        if (enterprise.email) {
+          var a2 = document.createElement("a");
+          a2.href = "mailto:" + enterprise.email;
+          a2.className = "btn btn-primary";
+          a2.textContent = enterprise.email;
+          addItem(tr.email, a2);
+        }
+        if (enterprise.phone) {
+          var a3 = document.createElement("a");
+          a3.href = "tel:" + sanitizePhone(enterprise.phone);
+          a3.className = "btn btn-primary";
+          a3.textContent = enterprise.phone;
+          addItem(tr.phone, a3);
+        }
+        if (enterprise.phone2) {
+          var a4 = document.createElement("a");
+          a4.href = "tel:" + sanitizePhone(enterprise.phone2);
+          a4.className = "btn btn-primary";
+          a4.textContent = enterprise.phone2;
+          addItem(tr.phone2, a4);
+        }
+        if (enterprise.ncc) {
+          var ncc = document.createElement("a");
+          ncc.className = "btn btn-primary";
+          ncc.textContent = enterprise.ncc;
+          addItem(tr.ncc, ncc);
+        }
+        if (enterprise.boa) {
+          var boa = document.createElement("a");
+          boa.className = "btn btn-primary";
+          boa.textContent = enterprise.boa;
+          addItem(tr.boa, boa);
+        }
+        if (enterprise.rccm) {
+          var rccm = document.createElement("a");
+          rccm.className = "btn btn-primary";
+          rccm.textContent = enterprise.rccm;
+          addItem(tr.rccm, rccm);
+        }
+        // Adresse
+        var parts = [];
+        if (addressDisplay) parts.push(addressDisplay);
+        var cityLine = [enterprise.postal_code || "", cityDisplay || ""].join(" ").trim();
+        if (cityLine) parts.push(cityLine);
+        if (countryDisplay) parts.push(countryDisplay);
+        var addr = document.createElement("span");
+        addr.textContent = parts.join(", ");
+        addItem(tr.address, addr);
+
+        // QR Code
+        var urlLogoQr = enterprise.qr_logo_url || "";
+        var qrContainer = document.getElementById("qrcode");
+        var messageLinkCopied = tr.link_copied;
+
+        function generer_code_qr(url_cible) {
+          if (!qrContainer) return;
+          var taille = Math.min(600, Math.floor(Math.min(qrContainer.clientWidth || 600, window.innerWidth - 60)));
+          if (!taille || taille < 240) taille = 320;
+          var facteur_pixel = Math.ceil(window.devicePixelRatio || 2);
+          var taille_rendu = Math.max(512, taille * facteur_pixel);
+          if (typeof QRCode === "undefined") {
+            console.error("Bibliothèque QRCode non chargée.");
+            return;
+          }
+          while (qrContainer.firstChild) qrContainer.removeChild(qrContainer.firstChild);
+
+          new QRCode(qrContainer, {
+            text: url_cible,
+            width: taille_rendu,
+            height: taille_rendu,
+            correctLevel: QRCode.CorrectLevel.H
+          });
+
+          var element_rendu = qrContainer.querySelector("canvas, img");
+          if (element_rendu) {
+            element_rendu.style.width = taille + "px";
+            element_rendu.style.height = taille + "px";
+          }
+
+          if (urlLogoQr) {
+            essayer_composer_logo(qrContainer, urlLogoQr);
+          }
+
+          function url_donnees_depuis_qr() {
+            var image = qrContainer.querySelector("img");
+            if (image && image.src) return image.src;
+            var toile = qrContainer.querySelector("canvas");
+            if (toile && toile.toDataURL) return toile.toDataURL("image/png");
+            return "";
+          }
+
+          btnDownload.onclick = function() {
+            var url_donnees = url_donnees_depuis_qr();
+            if ((!url_donnees || (urlLogoQr && !qrContainer.querySelector("img"))) && urlLogoQr) {
+              composer_vers_data_url(qrContainer, urlLogoQr, function(url_sortie) {
+                if (!url_sortie) return;
+                declencher_telechargement(url_sortie);
+              });
+              return;
+            }
+            if (!url_donnees) return;
+            declencher_telechargement(url_donnees);
+          };
+
+          btnCopy.onclick = function() {
+            navigator.clipboard.writeText(url_cible).then(function() {
+              var precedent = btnCopy.textContent;
+              btnCopy.textContent = messageLinkCopied;
+              setTimeout(function(){ btnCopy.textContent = precedent; }, 1200);
+            });
+          };
+
+          function declencher_telechargement(lien_href) {
+            var lien_el = document.createElement("a");
+            lien_el.href = lien_href;
+            lien_el.download = "qr-" + slugify(nameDisplay) + ".png";
+            document.body.appendChild(lien_el);
+            lien_el.click();
+            lien_el.remove();
+          }
+        }
+
+        function charger_bibliotheque_qr_puis_generer(url_cible) {
+          if (typeof QRCode !== "undefined") { generer_code_qr(url_cible); return; }
+          var script1 = document.createElement("script");
+          script1.src = "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js";
+          script1.onload = function(){ generer_code_qr(url_cible); };
+          script1.onerror = function() {
+            var script2 = document.createElement("script");
+            script2.src = "https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js";
+            script2.onload = function(){ generer_code_qr(url_cible); };
+            script2.onerror = function(){ console.error("Impossible de charger la librairie QRCode depuis les CDN."); };
+            document.head.appendChild(script2);
+          };
+          document.head.appendChild(script1);
+        }
+
+        function essayer_composer_logo(conteneur, url_logo) {
+          composer_vers_data_url(conteneur, url_logo, function(url_sortie, succes) {
+            if (succes && url_sortie) {
+              var image_sortie = new Image();
+              image_sortie.src = url_sortie;
+              while (conteneur.firstChild) conteneur.removeChild(conteneur.firstChild);
+              conteneur.appendChild(image_sortie);
+            } else {
+              superposer_logo_dom(conteneur, url_logo);
+            }
+          });
+        }
+
+        function composer_vers_data_url(conteneur, url_logo, cb) {
+          var image = conteneur.querySelector("img");
+          var toile = conteneur.querySelector("canvas");
+          var toile_base;
+
+          function traiter_avec_toile(toile_temp) {
+            var contexte = toile_temp.getContext("2d");
+            var cote = Math.min(toile_temp.width, toile_temp.height);
+
+            var logo = new Image();
+            logo.crossOrigin = "anonymous";
+            logo.onload = function() {
+              var ratio = (logo.naturalHeight || logo.height) / (logo.naturalWidth || logo.width);
+              var logo_largeur = Math.round(cote * 0.36);
+              var logo_hauteur = Math.round(logo_largeur * ratio);
+              var hauteur_max = Math.round(cote * 0.28);
+              if (logo_hauteur > hauteur_max) {
+                var echelle = hauteur_max / logo_hauteur;
+                logo_largeur = Math.round(logo_largeur * echelle);
+                logo_hauteur = Math.round(logo_hauteur * echelle);
+              }
+              var x_logo = Math.round((toile_temp.width - logo_largeur) / 2);
+              var y_logo = Math.round((toile_temp.height - logo_hauteur) / 2);
+
+              dessiner_rectangle_arrondi(contexte, x_logo, y_logo, logo_largeur, logo_hauteur, Math.round(Math.min(logo_largeur, logo_hauteur) * 0.18), "#fff");
+              contexte.drawImage(logo, x_logo, y_logo, logo_largeur, logo_hauteur);
+              try {
+                var url_sortie = toile_temp.toDataURL("image/png");
+                cb(url_sortie, true);
+              } catch (e) {
+                console.warn("toDataURL bloqué (CORS). Overlay DOM utilisé.");
+                cb(null, false);
+              }
+            };
+            logo.onerror = function() { cb(null, false); };
+            logo.src = url_logo;
+          }
+
+          if (toile) {
+            toile_base = document.createElement("canvas");
+            toile_base.width = toile.width;
+            toile_base.height = toile.height;
+            var contexte_base = toile_base.getContext("2d");
+            contexte_base.drawImage(toile, 0, 0);
+            traiter_avec_toile(toile_base);
+            return;
+          }
+
+          if (image) {
+            if (!image.complete) {
+              image.addEventListener("load", function(){ composer_vers_data_url(conteneur, url_logo, cb); });
+              return;
+            }
+            toile_base = document.createElement("canvas");
+            toile_base.width = image.naturalWidth || image.width;
+            toile_base.height = image.naturalHeight || image.height;
+            var contexte_base2 = toile_base.getContext("2d");
+            contexte_base2.drawImage(image, 0, 0);
+            traiter_avec_toile(toile_base);
+            return;
+          }
+
+          setTimeout(function(){ composer_vers_data_url(conteneur, url_logo, cb); }, 50);
+        }
+
+        function dessiner_rectangle_arrondi(contexte, x, y, largeur, hauteur, rayon, couleur_remplissage) {
+          contexte.save();
+          contexte.beginPath();
+          contexte.moveTo(x + rayon, y);
+          contexte.arcTo(x + largeur, y, x + largeur, y + hauteur, rayon);
+          contexte.arcTo(x + largeur, y + hauteur, x, y + hauteur, rayon);
+          contexte.arcTo(x, y + hauteur, x, y, rayon);
+          contexte.arcTo(x, y, x + largeur, y, rayon);
+          contexte.closePath();
+          contexte.fillStyle = couleur_remplissage;
+          contexte.fill();
+          contexte.restore();
+        }
+
+        function superposer_logo_dom(conteneur, url_logo) {
+          if (conteneur.querySelector(".qr-logo")) return;
+          var superposition = document.createElement("img");
+          superposition.src = url_logo;
+          superposition.alt = "Logo";
+          superposition.className = "qr-logo";
+          conteneur.appendChild(superposition);
+        }
+
+        // Démarrage
+        var qrUrl = computeQrUrl(lang);
+        charger_bibliotheque_qr_puis_generer(qrUrl);
+      })();
+    </script>
+  </body>
+</html>
+
